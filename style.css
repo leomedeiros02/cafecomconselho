@@ -67,5 +67,33 @@ body {
 
   .aspas {
     font-size: 70px;
+    
   }
+  .share {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.share-text {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-bottom: 15px;
+}
+
+.icons {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.icons i {
+  font-size: 24px;
+  color: #d4a055;
+  transition: 0.3s;
+}
+
+.icons i:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
 }
