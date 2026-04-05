@@ -22,4 +22,26 @@ function mostrarFrase() {
 
   document.getElementById("frase").innerText = partes[0];
   document.getElementById("autor").innerText = partes[1] || "";
+function configurarCompartilhamento(frase, autor) {
+  const texto = `${frase} — ${autor}`;
+  const url = "https://leomedeiros02.github.io/cafecomconselho/";
+
+  document.getElementById("whatsapp").href =
+    `https://wa.me/?text=${encodeURIComponent(texto + " " + url)}`;
+
+  document.getElementById("telegram").href =
+    `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(texto)}`;
+
+  document.getElementById("facebook").href =
+    `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+
+  document.getElementById("instagram").onclick = () => {
+    alert("Para Instagram, salve a imagem e poste manualmente 👊");
+  };
+
+  document.getElementById("salvar").onclick = () => {
+    alert("Vamos ativar salvar imagem no próximo passo 👊");
+  };
 }
+
+
