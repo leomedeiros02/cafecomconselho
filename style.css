@@ -69,10 +69,11 @@ body {
     font-size: 70px;
     
   }
-  .share {
-  margin-top: 60px;
+ .share {
+  margin-top: 100px; /* mais afastado */
   text-align: center;
 }
+
 
 .share-text {
   font-size: 12px;
@@ -83,7 +84,7 @@ body {
 .icons {
   display: flex;
   justify-content: center;
-  gap: 25px;
+  gap: 35px; /* mais espaço entre ícones */
 }
 
 .icons i {
