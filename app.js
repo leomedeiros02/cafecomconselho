@@ -47,21 +47,39 @@ function configurarCompartilhamento(frase, autor) {
     window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, "_blank");
   };
 
-  document.getElementById("salvar").onclick = () => {
+  document.getElementById("salvar").onclick = async () => {
 
-    const conteudo = document.getElementById("conteudo");
-    const share = document.querySelector(".share");
+  const conteudo = document.getElementById("conteudo");
+  const share = document.querySelector(".share");
 
-    share.style.display = "none";
+  share.style.display = "none";
 
-    html2canvas(conteudo).then(canvas => {
+  const canvas = await html2canvas(conteudo, {
+    backgroundColor: "#000",
+    scale: 2
+  });
+
+  share.style.display = "block";
+
+  canvas.toBlob(async (blob) => {
+
+    const file = new File([blob], "conselho.png", { type: "image/png" });
+
+    // Tenta abrir o menu de compartilhamento do celular
+    if (navigator.share && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        files: [file],
+        title: "Conselho do dia"
+      });
+    } else {
+      // fallback (salvar imagem)
       const link = document.createElement("a");
-      link.download = "conselho.png";
       link.href = canvas.toDataURL();
+      link.download = "conselho.png";
       link.click();
+    }
 
-      share.style.display = "block";
-    });
+  });
 
-  };
+};
 }
