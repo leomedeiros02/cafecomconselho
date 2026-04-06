@@ -44,32 +44,28 @@ async function compartilharImagem() {
   const frase = document.getElementById("frase").innerText;
   const autor = document.getElementById("autor").innerText;
 
-  // criar canvas quadrado estilo Instagram
   const canvas = document.createElement("canvas");
   canvas.width = 1080;
   canvas.height = 1080;
 
   const ctx = canvas.getContext("2d");
 
-  // fundo preto premium
+  // fundo preto
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // cor dourada
-  ctx.fillStyle = "#d4a055";
-
   // aspas
+  ctx.fillStyle = "#d4a055";
   ctx.font = "80px serif";
   ctx.textAlign = "center";
   ctx.fillText("“", 540, 180);
 
-  // FRASE (quebra de linha automática)
+  // frase
   ctx.fillStyle = "#fff";
   ctx.font = "bold 48px serif";
-
   wrapText(ctx, frase, 540, 400, 800, 60);
 
-  // linha decorativa
+  // linha
   ctx.fillStyle = "#d4a055";
   ctx.fillRect(440, 600, 200, 3);
 
@@ -78,12 +74,11 @@ async function compartilharImagem() {
   ctx.font = "28px serif";
   ctx.fillText(autor, 540, 680);
 
-  // marca (opcional)
+  // marca
+  ctx.fillStyle = "#555";
   ctx.font = "20px serif";
-  ctx.fillStyle = "#666";
   ctx.fillText("Café com Conselho", 540, 950);
 
-  // compartilhar
   canvas.toBlob(async (blob) => {
 
     const file = new File([blob], "conselho.png", { type: "image/png" });
@@ -110,9 +105,8 @@ function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
   for (let n = 0; n < words.length; n++) {
     const testLine = line + words[n] + " ";
     const metrics = ctx.measureText(testLine);
-    const testWidth = metrics.width;
 
-    if (testWidth > maxWidth && n > 0) {
+    if (metrics.width > maxWidth && n > 0) {
       ctx.fillText(line, x, y);
       line = words[n] + " ";
       y += lineHeight;
